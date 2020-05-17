@@ -16,8 +16,8 @@ func TestNewInternalServerError(t *testing.T) {
 	assert.EqualValues(t, "this is the message", err.Message)
 	assert.EqualValues(t, http.StatusText(http.StatusInternalServerError), err.Error)
 	assert.NotNil(t, err.Causes)
-	assert.EqualValues(t, 1, len(err.Causes))
-	assert.EqualValues(t, "database error", err.Causes[0])
+	assert.EqualValues(t, 1, len(err.Causes()))
+	assert.EqualValues(t, "database error", err.Causes()[0])
 
 	errBytes, _ := json.Marshal(err)
 	fmt.Println(string(errBytes))
